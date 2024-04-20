@@ -3,10 +3,13 @@ package ff.conversor.de.monedas.modelos;
 import ff.conversor.de.monedas.calculos.CalculosArray;
 import ff.conversor.de.monedas.calculos.Conversor;
 
-import java.util.InputMismatchException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MenuPrincipal {
+
+    private final String MENSAJE_BIENVENIDA = """
+                Conversor de monedas - Challenge ONE G6""";
 
     private final String[] OPCIONES_MENU_PRINCIPAL = {
             "Dólar =>> Peso argentino",
@@ -16,13 +19,13 @@ public class MenuPrincipal {
             "Dólar =>> Peso colombiano",
             "Peso colombiano =>> Dólar",
             "Salir"};
-    private final Scanner INPUT = new Scanner(System.in);
-    private final String MENSAJE_ERROR = "ERROR! Debe ingresar un número del 1 al " + OPCIONES_MENU_PRINCIPAL.length;
+    public static final Scanner INPUT = new Scanner(System.in);
+    private final String MENSAJE_ERROR = "   ERROR! Debe ingresar un número del 1 al " + OPCIONES_MENU_PRINCIPAL.length;
     private final String MENSAJE_SALIR = """
             
-            *********************************
-            *Gracias por confiar en nosotros*
-            *********************************
+               *********************************
+               *Gracias por confiar en nosotros*
+               *********************************
             
             Fin del programa.
             """;
@@ -33,12 +36,62 @@ public class MenuPrincipal {
         boolean salir = false;
         while (!salir) {
             int opcion;
+            System.out.println();
+            System.out.println(MENSAJE_BIENVENIDA);
             mostrarOpcionesMenuPrincipal();
-            System.out.print("Elija una opción: ");
             opcion = elejirOpcion();
             salir = realizarSeleccion(opcion);
         }
         INPUT.close();
+    }
+
+    private void mostrarOpcionesMenuPrincipal() {
+        CalculosArray array = new CalculosArray();
+        int anchoMenu = array.stringMasLargaArray(OPCIONES_MENU_PRINCIPAL) + 10 + ((OPCIONES_MENU_PRINCIPAL.length < 9) ? 0 : 1);
+        String salida;
+        for (int i = 0; i < OPCIONES_MENU_PRINCIPAL.length; i++) {
+            salida = "";
+            if (i == 0) {
+                imprimiLineaVertical(anchoMenu);
+            }
+            salida = "   " + CARACTER_CAJA + " " + (i + 1) + " - " + OPCIONES_MENU_PRINCIPAL[i];
+            while (salida.length() < anchoMenu) {
+                salida += " ";
+            }
+            System.out.println(salida + "*");
+            if (i == OPCIONES_MENU_PRINCIPAL.length-1) {
+                imprimiLineaVertical(anchoMenu);
+            }
+        }
+    }
+
+    private int elejirOpcion() {
+        int opcion;
+
+        do {
+            try {
+                System.out.print("   Elija una opción: ");
+                opcion = Integer.parseInt(INPUT.nextLine());
+                if (opcion >= 1 && opcion <= OPCIONES_MENU_PRINCIPAL.length) {
+                    return opcion;
+                }
+                else
+                    System.out.println(MENSAJE_ERROR);
+            } catch (NumberFormatException e) {
+                System.out.println(MENSAJE_ERROR);
+            }
+        } while (true);
+
+
+    }
+
+
+    private void imprimiLineaVertical(int anchoMenu) {
+        System.out.print("   ");
+        for (int j = 0; j < anchoMenu -2; j++) {
+            System.out.print(CARACTER_CAJA);
+        }
+        System.out.println();
     }
 
     private boolean realizarSeleccion(int opcion) {
@@ -74,51 +127,5 @@ public class MenuPrincipal {
         }
         convertir.convertirMoneda(moneda1, moneda2);
         return false;
-    }
-
-    private void mostrarOpcionesMenuPrincipal() {
-        CalculosArray array = new CalculosArray();
-        int anchoMenu = array.stringMasLargaArray(OPCIONES_MENU_PRINCIPAL) + ((OPCIONES_MENU_PRINCIPAL.length < 9) ? 0 : 1);
-        String salida;
-        for (int i = 0; i < OPCIONES_MENU_PRINCIPAL.length; i++) {
-            salida = "";
-            if (i == 0) {
-                imprimiLineaVertical(anchoMenu);
-            }
-            salida = CARACTER_CAJA + " " + (i + 1) + " - " + OPCIONES_MENU_PRINCIPAL[i];
-            while (salida.length() <= anchoMenu) {
-                //salida = salida.substring(0, salida.length()-1);
-                salida += " ";
-            }
-            System.out.println(salida + CARACTER_CAJA);
-            if (i == OPCIONES_MENU_PRINCIPAL.length-1) {
-                imprimiLineaVertical(anchoMenu);
-            }
-        }
-    }
-
-    private void imprimiLineaVertical(int anchoMenu) {
-        for (int j = 0; j < anchoMenu + 8; j++) {
-            System.out.print(CARACTER_CAJA);
-        }
-        System.out.println();
-    }
-
-
-
-    private int elejirOpcion() {
-        int opcion;
-        try {
-            while (true) {
-                opcion = INPUT.nextInt();
-                if (opcion >= 1 && opcion <= OPCIONES_MENU_PRINCIPAL.length)
-                    return opcion;
-                else
-                    System.out.println(MENSAJE_ERROR);
-            }
-        } catch (InputMismatchException e) {
-                System.out.println(MENSAJE_ERROR);
-        }
-        return OPCIONES_MENU_PRINCIPAL.length;
     }
 }
