@@ -10,8 +10,8 @@ import java.net.http.HttpResponse;
 
 public class ConsultaCotizacion {
 
-    public float obtenerCotizacion(String moneda) {
-
+    public Moneda obtenerCotizacion() {
+        Moneda cotizaciones = null;
         URI urlEnchange = URI.create("https://v6.exchangerate-api.com/v6/e49abfd86fe7a9c0782eec5a/latest/USD");
 
         HttpClient client = HttpClient.newHttpClient();
@@ -25,15 +25,13 @@ public class ConsultaCotizacion {
             Gson gson = new Gson();
             String json = response.body();
 
-            Moneda cotizaciones = gson.fromJson(json, Moneda.class);
+            cotizaciones = gson.fromJson(json, Moneda.class);
 
-            return cotizaciones.getMoneda(moneda);
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
-        return 0;
+        return cotizaciones;
     }
 }

@@ -1,18 +1,15 @@
 package ff.conversor.de.monedas.calculos;
 
-import ff.conversor.de.monedas.modelos.ConsultaCotizacion;
 import static ff.conversor.de.monedas.modelos.MenuPrincipal.INPUT;
 
-import java.util.InputMismatchException;
-
+import ff.conversor.de.monedas.modelos.Moneda;
 
 public class Conversor {
 
-    private ConsultaCotizacion cotizacion = new ConsultaCotizacion();
 
-    public void convertirMoneda(String moneda1, String moneda2){
-        float valorMoneda1 = cotizacion.obtenerCotizacion(moneda1);
-        float valorMoneda2 = cotizacion.obtenerCotizacion(moneda2);
+    public void convertirMoneda(String moneda1, String moneda2, Moneda cotizaciones){
+        float valorMoneda1 = cotizaciones.getMoneda(moneda1);
+        float valorMoneda2 = cotizaciones.getMoneda(moneda2);
         float monto = obtenerMonto(moneda1, moneda2);
         float equicalenciaValor = valorMoneda2 / valorMoneda1 * monto;
         System.out.println("\n   " + monto + " " + moneda1 + " equivalen a: " + equicalenciaValor + " " + moneda2);

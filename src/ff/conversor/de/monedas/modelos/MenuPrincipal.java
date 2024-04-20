@@ -3,7 +3,6 @@ package ff.conversor.de.monedas.modelos;
 import ff.conversor.de.monedas.calculos.CalculosArray;
 import ff.conversor.de.monedas.calculos.Conversor;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -31,6 +30,9 @@ public class MenuPrincipal {
             """;
     private final char CARACTER_CAJA = '*';
     private Conversor convertir = new Conversor();
+
+    private ConsultaCotizacion consultaApi = new ConsultaCotizacion();
+    private Moneda cotizaciones = consultaApi.obtenerCotizacion();
 
     public void mostrarMenuPrincipal() {
         boolean salir = false;
@@ -125,7 +127,7 @@ public class MenuPrincipal {
                 System.out.println(MENSAJE_SALIR);
                 return true;
         }
-        convertir.convertirMoneda(moneda1, moneda2);
+        convertir.convertirMoneda(moneda1, moneda2, cotizaciones);
         return false;
     }
 }
