@@ -15,11 +15,11 @@ filtrar y mostrar las monedas de interés.
 </a>
 
 <h2>
-  Funcinalidades:
+  Funcionalidades:
 </h2>
 
 <p>
-  Convertir de Dolares eeuu a: 
+  Convertir de Dolares ee uu a: 
   <ul>
     <li>
        Peso argentino; 
@@ -31,16 +31,16 @@ filtrar y mostrar las monedas de interés.
       Peso colombiano;
     </li>
   </ul>
-  Y la conversion de cada una de estas monedas a dollares eeuu.
+  Y la conversión de cada una de estas monedas a dólares eeuu.
 </p>
-<h3>Funcionalidades en desarollor:</h3>
+<h3>Funcionalidades en desarrollo:</h3>
 
 <ul>
   <li>
       Listado en pantalla de monedas admitidas;
   </li>
   <li>
-      Convertir monedas introdiciendo las monedas a eleccion por teclado mediante cadena de texto;
+      Convertir monedas introduciendo las monedas a elección por teclado mediante cadena de texto;
   </li>
   <li>
       Historial de conversiones realizadas(Guardando y leyendo un archivo);
