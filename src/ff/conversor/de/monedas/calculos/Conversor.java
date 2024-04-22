@@ -6,7 +6,6 @@ import ff.conversor.de.monedas.modelos.Moneda;
 
 public class Conversor {
 
-
     public void convertirMoneda(String moneda1, String moneda2, Moneda cotizaciones){
         float valorMoneda1 = cotizaciones.getMoneda(moneda1);
         float valorMoneda2 = cotizaciones.getMoneda(moneda2);
