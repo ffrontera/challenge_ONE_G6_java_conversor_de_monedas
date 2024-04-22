@@ -19,15 +19,33 @@ filtrar y mostrar las monedas de interés.
 </h2>
 
 <p>
-  Convertir de Dolares a: Peso argentino,
-                          Real brasileño.
-                          Peso colombiano.
+  Convertir de Dolares eeuu a: 
+  <ul>
+    <li>
+       Peso argentino; 
+    </li>
+    <li>
+      Real brasileño;
+    </li>
+    <li>
+      Peso colombiano;
+    </li>
+  </ul>
+  Y la conversion de cada una de estas monedas a dollares eeuu.
 </p>
 <h3>Funcionalidades en desarollor:</h3>
 
-<p>
-  Listado en pantalla de monedas admitidas;
-  convertir monedas introdiciendo las monedas a eleccion por teclado mediante cadena de texto;
-  Historial de conversiones realizadas(Guardando y leyendo un archivo);
-  Mostrar en pantalla historial de conversiones(monto, moneda entrada, moneda de salida, valor en moneda de salida, fecha y hora de la consulta).
-</p>
+<ul>
+  <li>
+      Listado en pantalla de monedas admitidas;
+  </li>
+  <li>
+      Convertir monedas introdiciendo las monedas a eleccion por teclado mediante cadena de texto;
+  </li>
+  <li>
+      Historial de conversiones realizadas(Guardando y leyendo un archivo);
+  </li>
+  <li>
+      Mostrar en pantalla historial de conversiones(monto, moneda entrada, moneda de salida, valor en moneda de salida, fecha y hora de la consulta).
+  </li>
+</ul>
