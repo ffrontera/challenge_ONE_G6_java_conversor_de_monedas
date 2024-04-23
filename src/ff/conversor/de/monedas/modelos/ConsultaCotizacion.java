@@ -27,7 +27,6 @@ public class ConsultaCotizacion {
             cotizaciones = gson.fromJson(json, Moneda.class);
 
 
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

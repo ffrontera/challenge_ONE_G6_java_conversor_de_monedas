@@ -23,7 +23,7 @@ public class MenuPrincipal {
     private final String MENSAJE_SALIR = """
             
                *********************************
-               *Gracias por confiar en nosotros*
+               *   Gracias por tu confianza!   *
                *********************************
             
             Fin del programa.
