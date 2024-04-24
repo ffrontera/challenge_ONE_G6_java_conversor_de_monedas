@@ -2,6 +2,7 @@ package ff.conversor.de.monedas.modelos;
 
 import ff.conversor.de.monedas.calculos.CalculosArray;
 import ff.conversor.de.monedas.calculos.Conversor;
+import ff.conversor.de.monedas.modelos.MenuEleccionMoneda;
 
 import java.util.Scanner;
 
@@ -17,6 +18,7 @@ public class MenuPrincipal {
             "Real brasileño =>> Dólar",
             "Dólar =>> Peso colombiano",
             "Peso colombiano =>> Dólar",
+            "Elegir monedas.",
             "Salir"};
     public static final Scanner INPUT = new Scanner(System.in);
     private final String MENSAJE_ERROR = "   ERROR! Debe ingresar un número del 1 al " + OPCIONES_MENU_PRINCIPAL.length;
@@ -26,13 +28,15 @@ public class MenuPrincipal {
                *   Gracias por tu confianza!   *
                *********************************
             
-            Fin del programa.
+               *********Fin del programa********
             """;
     private final char CARACTER_CAJA = '*';
     private Conversor convertir = new Conversor();
 
     private ConsultaCotizacion consultaApi = new ConsultaCotizacion();
     private Moneda cotizaciones = consultaApi.obtenerCotizacion();
+
+    private MenuEleccionMoneda menu2 = new MenuEleccionMoneda();
 
     public void mostrarMenuPrincipal() {
         boolean salir = false;
@@ -116,12 +120,17 @@ public class MenuPrincipal {
                 moneda2 = "USD";
                 break;
             case 5:
-                moneda1 = "UDS";
+                moneda1 = "USD";
                 moneda2 = "COP";
                 break;
             case 6:
                 moneda1 = "COP";
                 moneda2 = "USD";
+                break;
+            case 7:
+                String[] aux = menu2.seleccionarMonedas();
+                moneda1 = aux[0];
+                moneda2 = aux[1];
                 break;
             default:
                 System.out.println(MENSAJE_SALIR);
