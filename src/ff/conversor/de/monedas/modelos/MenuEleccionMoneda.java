@@ -4,7 +4,7 @@ import static ff.conversor.de.monedas.modelos.MenuPrincipal.INPUT;
 
 public class MenuEleccionMoneda {
 
-    private final   String MONEDAS_DISPONIBLES = """              
+    private final   String MONEDAS_DISPONIBLES = """            
                ARS - Peso argentino	             - Argentina
                BOB - boliviano boliviano	     - Bolivia
                BRL - Real brasileño	             - Brasil
@@ -26,6 +26,7 @@ public class MenuEleccionMoneda {
 
     private void mostrarMenuSeleccionarMonedas() {
         System.out.println("""
+                
                 La aplicación soporta la mayoria de los codigos de moneda ISO-4217.
                    A continuacion se muestran algunos ejemplos:\n""");
         System.out.println(MONEDAS_DISPONIBLES);

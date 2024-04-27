@@ -1,9 +1,10 @@
 package ff.conversor.de.monedas.modelos;
 
+import com.google.gson.Gson;
 import ff.conversor.de.monedas.calculos.CalculosArray;
 import ff.conversor.de.monedas.calculos.Conversor;
-import ff.conversor.de.monedas.modelos.MenuEleccionMoneda;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -19,6 +20,7 @@ public class MenuPrincipal {
             "Dólar =>> Peso colombiano",
             "Peso colombiano =>> Dólar",
             "Elegir monedas.",
+            "Historial conversiones",
             "Salir"};
     public static final Scanner INPUT = new Scanner(System.in);
     private final String MENSAJE_ERROR = "   ERROR! Debe ingresar un número del 1 al " + OPCIONES_MENU_PRINCIPAL.length;
@@ -32,10 +34,8 @@ public class MenuPrincipal {
             """;
     private final char CARACTER_CAJA = '*';
     private Conversor convertir = new Conversor();
-
     private ConsultaCotizacion consultaApi = new ConsultaCotizacion();
     private Moneda cotizaciones = consultaApi.obtenerCotizacion();
-
     private MenuEleccionMoneda menu2 = new MenuEleccionMoneda();
 
     public void mostrarMenuPrincipal() {
@@ -101,7 +101,7 @@ public class MenuPrincipal {
     }
 
     private boolean realizarSeleccion(int opcion) {
-        String moneda1, moneda2;
+        String moneda1 = "", moneda2 = "";
         switch (opcion){
             case 1:
                 moneda1 = "USD";
@@ -132,11 +132,26 @@ public class MenuPrincipal {
                 moneda1 = aux[0];
                 moneda2 = aux[1];
                 break;
+            case 8: //al agregar una opcion al menu principal, agregar el tratamiento a este numero de caso, y el caso actual moverlo a este numero + 1.
+                ModificarArchivo archivo = new ModificarArchivo();
+                Gson gson = new Gson();
+                try {
+                    String json = archivo.leerArchivo();
+                    ListaConversiones lista = gson.fromJson(json, ListaConversiones.class);
+                    System.out.println();
+                    System.out.println(lista);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (NullPointerException e) {
+                    System.out.println("No hay conversiones para mostrar.");
+                }
+                break;
             default:
                 System.out.println(MENSAJE_SALIR);
                 return true;
         }
-        convertir.convertirMoneda(moneda1, moneda2, cotizaciones);
+        if (opcion < OPCIONES_MENU_PRINCIPAL.length-1)
+            convertir.convertirMoneda(moneda1, moneda2, cotizaciones);
         return false;
     }
 }

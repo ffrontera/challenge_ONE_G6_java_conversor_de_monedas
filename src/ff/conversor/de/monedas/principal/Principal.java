@@ -2,10 +2,12 @@ package ff.conversor.de.monedas.principal;
 
 import ff.conversor.de.monedas.modelos.MenuPrincipal;
 
-public class Principal {
-    
+import java.io.FileNotFoundException;
 
-    public static void main(String[] args) {
+public class Principal {
+
+
+    public static void main(String[] args) throws FileNotFoundException {
 
 
         MenuPrincipal menuPrincipal = new MenuPrincipal();

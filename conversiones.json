@@ -1,0 +1,20 @@
+{
+  "conversiones": [
+    {
+      "monedaEntrada": "USD",
+      "valorEntrada": 899.0,
+      "monedaSalida": "ARS",
+      "tasaConversion": "864,75",
+      "valorSalida": "777410,25",
+      "fechaHoraConversion": "27-04-2024 11:07:04"
+    },
+    {
+      "monedaEntrada": "USD",
+      "valorEntrada": 10.0,
+      "monedaSalida": "ARS",
+      "tasaConversion": "864,75",
+      "valorSalida": "8647,50",
+      "fechaHoraConversion": "27-04-2024 12:10:33"
+    }
+  ]
+}
